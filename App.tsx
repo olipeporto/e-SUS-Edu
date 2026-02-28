@@ -36,26 +36,25 @@ const App: React.FC = () => {
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
     >
       <div className="text-center mb-12">
-        <span className="inline-flex items-center justify-center p-3 bg-blue-100 rounded-full mb-4">
-          <LayoutDashboard className="w-6 h-6 text-blue-600" />
-        </span>
+
         <h1 className="text-4xl font-extrabold text-slate-900 mb-4">
           Tutoriais e-SUS APS
         </h1>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+        <p className="text-lg text-slate-700 max-w-2xl mx-auto">
           Selecione um módulo abaixo para iniciar o treinamento interativo sobre as funcionalidades do sistema.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="flex flex-wrap justify-center gap-6">
         {TUTORIAL_MODULES.map((module, index) => (
-          <ModuleCard
-            key={module.id}
-            module={module}
-            index={index}
-            onClick={() => handleModuleSelect(module.id)}
-            onOpenLinks={setLinksModalModuleId}
-          />
+          <div key={module.id} className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex">
+            <ModuleCard
+              module={module}
+              index={index}
+              onClick={() => handleModuleSelect(module.id)}
+              onOpenLinks={setLinksModalModuleId}
+            />
+          </div>
         ))}
       </div>
     </motion.div>

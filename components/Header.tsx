@@ -8,11 +8,11 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onGoHome, isHome }) => {
   return (
-    <header className="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <header className="bg-white sticky top-0 z-50 shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div 
-            className="flex items-center cursor-pointer group" 
+          <div
+            className="flex items-center cursor-pointer group"
             onClick={onGoHome}
           >
             <div className="bg-blue-600 p-2 rounded-lg group-hover:bg-blue-700 transition-colors">
@@ -22,9 +22,9 @@ const Header: React.FC<HeaderProps> = ({ onGoHome, isHome }) => {
               e-SUS <span className="text-blue-600">Edu</span>
             </span>
           </div>
-          
+
           {!isHome && (
-            <button 
+            <button
               onClick={onGoHome}
               className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors px-3 py-2 rounded-md hover:bg-slate-50"
             >
