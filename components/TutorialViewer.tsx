@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TutorialModule } from '../types';
-import { 
-  ChevronRight, 
-  ChevronLeft, 
-  CheckCircle2, 
-  AlertTriangle, 
+import {
+  ChevronRight,
+  ChevronLeft,
+  CheckCircle2,
+  AlertTriangle,
   Info,
   Map,
   Users,
@@ -51,6 +51,19 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
     }
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        handleNext();
+      } else if (e.key === 'ArrowLeft') {
+        handlePrev();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentStepIndex, isLastStep, onComplete]);
+
   // Helper to render dynamic icons based on string ID
   const renderIcon = (iconName?: string) => {
     const className = "w-12 h-12 text-blue-600 mb-4";
@@ -91,7 +104,7 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
           <span>Passo {currentStepIndex + 1} de {module.steps.length}</span>
         </div>
         <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
-          <motion.div 
+          <motion.div
             className="h-full bg-blue-600"
             initial={{ width: 0 }}
             animate={{ width: `${((currentStepIndex + 1) / module.steps.length) * 100}%` }}
@@ -100,86 +113,88 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
         </div>
       </div>
 
-      {/* Content Area */}
-      <div className="flex-grow flex items-center justify-center relative">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentStepIndex}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3 }}
-            className="bg-white w-full rounded-2xl shadow-lg border border-slate-100 p-8 md:p-12"
-          >
-            <div className="flex flex-col items-center text-center mb-8">
-              <div className="bg-blue-50 p-4 rounded-full mb-4">
-                {renderIcon(currentStep.icon)}
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
-                {currentStep.title}
-              </h2>
-            </div>
+      {/* Content Area with Side Arrows */}
+      <div className="flex-grow flex items-center justify-between w-full mt-4">
 
-            <div className="space-y-4 max-w-2xl mx-auto">
-              {currentStep.content.map((paragraph, idx) => (
-                <motion.div 
-                  key={idx}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + (idx * 0.1) }}
-                  className="flex items-start"
-                >
-                  <div className="mt-1.5 mr-3 min-w-[6px] h-1.5 rounded-full bg-orange-500" />
-                  <p className="text-slate-600 text-lg leading-relaxed text-left">
-                    {paragraph}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            {currentStep.note && (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 }}
-                className="mt-8 bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-lg max-w-2xl mx-auto"
-              >
-                <div className="flex items-start">
-                  <AlertTriangle className="w-5 h-5 text-orange-600 mr-2 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-orange-800 font-medium">
-                    {currentStep.note}
-                  </p>
-                </div>
-              </motion.div>
-            )}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Navigation Controls */}
-      <div className="mt-8 flex justify-between items-center max-w-4xl mx-auto w-full">
+        {/* Left Navigation Arrow */}
         <button
           onClick={handlePrev}
           disabled={currentStepIndex === 0}
-          className={`flex items-center px-6 py-3 rounded-lg text-sm font-medium transition-colors ${
-            currentStepIndex === 0 
-              ? 'text-slate-300 cursor-not-allowed' 
-              : 'text-slate-600 hover:bg-slate-100 hover:text-blue-600'
-          }`}
+          className={`p-2 transition-all transform hover:scale-110 hover:-translate-x-1 flex-shrink-0 ${currentStepIndex === 0
+            ? 'opacity-0 cursor-not-allowed pointer-events-none'
+            : 'text-slate-400 hover:text-blue-600 cursor-pointer'
+            }`}
+          aria-label="Passo anterior"
         >
-          <ChevronLeft className="w-4 h-4 mr-2" />
-          Anterior
+          <ChevronLeft className="w-10 h-10 md:w-16 md:h-16" strokeWidth={1} />
         </button>
 
+        {/* Card Container */}
+        <div className="w-full max-w-2xl mx-4 md:mx-8">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentStepIndex}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white w-full rounded-2xl shadow-lg border border-slate-100 p-8 md:p-12 relative"
+            >
+              <div className="flex flex-col items-center text-center mb-8">
+                <div className="bg-blue-50 p-4 rounded-full mb-4">
+                  {renderIcon(currentStep.icon)}
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
+                  {currentStep.title}
+                </h2>
+              </div>
+
+              <div className="space-y-4 max-w-xl mx-auto">
+                {currentStep.content.map((paragraph, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + (idx * 0.1) }}
+                    className="flex items-start"
+                  >
+                    <div className="mt-1.5 mr-3 min-w-[6px] h-1.5 rounded-full bg-orange-500" />
+                    <p className="text-slate-600 text-lg leading-relaxed text-left">
+                      {paragraph}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {currentStep.note && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="mt-8 bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-lg max-w-xl mx-auto"
+                >
+                  <div className="flex items-start">
+                    <AlertTriangle className="w-5 h-5 text-orange-600 mr-2 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-orange-800 font-medium">
+                      {currentStep.note}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Right Navigation Arrow */}
         <button
           onClick={handleNext}
-          className="flex items-center px-8 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-sm font-medium"
+          className="p-2 transition-all transform hover:scale-110 hover:translate-x-1 flex-shrink-0 text-slate-400 hover:text-blue-600 cursor-pointer"
+          aria-label={isLastStep ? 'Concluir tutorial' : 'Próximo passo'}
         >
-          {isLastStep ? 'Concluir' : 'Próximo'}
           {isLastStep ? (
-            <CheckCircle2 className="w-4 h-4 ml-2" />
+            <CheckCircle2 className="w-10 h-10 md:w-16 md:h-16 text-blue-600" strokeWidth={1} />
           ) : (
-            <ChevronRight className="w-4 h-4 ml-2" />
+            <ChevronRight className="w-10 h-10 md:w-16 md:h-16" strokeWidth={1} />
           )}
         </button>
       </div>
