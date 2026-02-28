@@ -26,61 +26,67 @@ const App: React.FC = () => {
     setActiveModuleId(null);
   };
 
+  const renderDashboard = () => (
+    <motion.div
+      key="dashboard"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.4 }}
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
+    >
+      <div className="text-center mb-12">
+        <span className="inline-flex items-center justify-center p-3 bg-blue-100 rounded-full mb-4">
+          <LayoutDashboard className="w-6 h-6 text-blue-600" />
+        </span>
+        <h1 className="text-4xl font-extrabold text-slate-900 mb-4">
+          Tutoriais e-SUS APS
+        </h1>
+        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          Selecione um módulo abaixo para iniciar o treinamento interativo sobre as funcionalidades do sistema.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {TUTORIAL_MODULES.map((module, index) => (
+          <ModuleCard
+            key={module.id}
+            module={module}
+            index={index}
+            onClick={() => handleModuleSelect(module.id)}
+            onOpenLinks={setLinksModalModuleId}
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
+
+  const renderTutorial = () => {
+    if (!activeModule) return null;
+
+    return (
+      <motion.div
+        key="tutorial"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="w-full"
+      >
+        <TutorialViewer
+          module={activeModule}
+          onComplete={handleGoHome}
+        />
+      </motion.div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
       <Header onGoHome={handleGoHome} isHome={viewState === 'dashboard'} />
 
       <main className="flex-grow relative">
         <AnimatePresence mode="wait">
-          {viewState === 'dashboard' ? (
-            <motion.div
-              key="dashboard"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
-            >
-              <div className="text-center mb-12">
-                <span className="inline-flex items-center justify-center p-3 bg-blue-100 rounded-full mb-4">
-                  <LayoutDashboard className="w-6 h-6 text-blue-600" />
-                </span>
-                <h1 className="text-4xl font-extrabold text-slate-900 mb-4">
-                  Tutoriais e-SUS APS
-                </h1>
-                <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                  Selecione um módulo abaixo para iniciar o treinamento interativo sobre as funcionalidades do sistema.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {TUTORIAL_MODULES.map((module, index) => (
-                  <ModuleCard
-                    key={module.id}
-                    module={module}
-                    index={index}
-                    onClick={() => handleModuleSelect(module.id)}
-                    onOpenLinks={setLinksModalModuleId}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          ) : (
-            activeModule && (
-              <motion.div
-                key="tutorial"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="w-full"
-              >
-                <TutorialViewer 
-                  module={activeModule} 
-                  onComplete={handleGoHome} 
-                />
-              </motion.div>
-            )
-          )}
+          {viewState === 'dashboard' ? renderDashboard() : renderTutorial()}
         </AnimatePresence>
 
         {/* Links Modal */}
