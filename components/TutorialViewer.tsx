@@ -82,6 +82,8 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
         handleNext();
       } else if (e.key === 'ArrowLeft') {
         handlePrev();
+      } else if (e.key === 'Escape') {
+        onComplete();
       }
     };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Book, SquarePlay, FileText, MonitorPlay } from 'lucide-react';
 import { ResourceLink } from '../types';
@@ -12,6 +12,17 @@ interface LinksModalProps {
 }
 
 const LinksModal: React.FC<LinksModalProps> = ({ isOpen, onClose, title, links, videos }) => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -32,11 +43,11 @@ const LinksModal: React.FC<LinksModalProps> = ({ isOpen, onClose, title, links, 
             <div className="flex items-center justify-between mb-6 flex-shrink-0">
               <div className="flex items-center gap-2">
                 <div className="p-2 bg-blue-50 rounded-lg">
-                   <Book className="w-5 h-5 text-blue-600" />
+                  <Book className="w-5 h-5 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900">Links Úteis</h3>
               </div>
-              <button 
+              <button
                 onClick={onClose}
                 className="p-1 rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
               >
@@ -45,7 +56,7 @@ const LinksModal: React.FC<LinksModalProps> = ({ isOpen, onClose, title, links, 
             </div>
 
             <p className="text-sm text-slate-500 mb-6 flex-shrink-0">
-              Recursos complementares para o módulo: <br/>
+              Recursos complementares para o módulo: <br />
               <span className="font-semibold text-slate-700">{title}</span>
             </p>
 
@@ -102,12 +113,12 @@ const LinksModal: React.FC<LinksModalProps> = ({ isOpen, onClose, title, links, 
             </div>
 
             <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end flex-shrink-0">
-               <button
-                 onClick={onClose}
-                 className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
-               >
-                 Fechar
-               </button>
+              <button
+                onClick={onClose}
+                className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+              >
+                Fechar
+              </button>
             </div>
           </motion.div>
         </div>
