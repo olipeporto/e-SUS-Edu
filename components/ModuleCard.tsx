@@ -56,7 +56,7 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, onClick, index, onOpenL
         {hasResources && (
           <button
             onClick={handleLinksClick}
-            className="flex items-center justify-center p-2 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors z-10"
+            className="flex items-center justify-center p-2 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors z-10 cursor-pointer"
             title="Links e Vídeos"
           >
             <LinkIcon className="w-5 h-5 cursor-pointer" />

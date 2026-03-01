@@ -27,6 +27,31 @@ import {
   CheckSquare
 } from 'lucide-react';
 
+const ICON_MAP: Record<string, React.ElementType> = {
+  'info': Info,
+  'check': CheckCircle2,
+  'star': Star,
+  'merge': Merge,
+  'check-circle': CheckCircle2,
+  'settings': Settings,
+  'calendar': Calendar,
+  'user-search': Search,
+  'lock': Lock,
+  'home': Home,
+  'users': Users,
+  'user': User,
+  'alert': AlertTriangle,
+  'bar-chart': BarChart,
+  'list': List,
+  'filter': Filter,
+  'map': Map,
+  'stethoscope': Stethoscope,
+  'syringe': Syringe,
+  'file-text': FileText,
+  'clipboard': ClipboardList,
+  'check-square': CheckSquare,
+};
+
 interface TutorialViewerProps {
   module: TutorialModule;
   onComplete: () => void;
@@ -67,32 +92,8 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
   // Helper to render dynamic icons based on string ID
   const renderIcon = (iconName?: string) => {
     const className = "w-12 h-12 text-blue-600 mb-4";
-    switch (iconName) {
-      case 'info': return <Info className={className} />;
-      case 'check': return <CheckCircle2 className={className} />;
-      case 'star': return <Star className={className} />;
-      case 'merge': return <Merge className={className} />;
-      case 'check-circle': return <CheckCircle2 className={className} />;
-      case 'settings': return <Settings className={className} />;
-      case 'calendar': return <Calendar className={className} />;
-      case 'user-search': return <Search className={className} />;
-      case 'lock': return <Lock className={className} />;
-      case 'home': return <Home className={className} />;
-      case 'users': return <Users className={className} />;
-      case 'user': return <User className={className} />;
-      case 'alert': return <AlertTriangle className={className} />;
-      case 'bar-chart': return <BarChart className={className} />;
-      case 'list': return <List className={className} />;
-      case 'filter': return <Filter className={className} />;
-      case 'map': return <Map className={className} />;
-      // New icons for Atendimentos
-      case 'stethoscope': return <Stethoscope className={className} />;
-      case 'syringe': return <Syringe className={className} />;
-      case 'file-text': return <FileText className={className} />;
-      case 'clipboard': return <ClipboardList className={className} />;
-      case 'check-square': return <CheckSquare className={className} />;
-      default: return <Info className={className} />;
-    }
+    const IconComponent = iconName && ICON_MAP[iconName] ? ICON_MAP[iconName] : Info;
+    return <IconComponent className={className} />;
   };
 
   return (

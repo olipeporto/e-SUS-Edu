@@ -6,7 +6,6 @@ import ModuleCard from './components/ModuleCard';
 import TutorialViewer from './components/TutorialViewer';
 import LinksModal from './components/LinksModal';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LayoutDashboard } from 'lucide-react';
 
 const App: React.FC = () => {
   const [viewState, setViewState] = useState<ViewState>('dashboard');
