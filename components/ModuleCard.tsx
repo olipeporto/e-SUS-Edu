@@ -59,7 +59,7 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, onClick, index, onOpenL
             className="flex items-center justify-center p-2 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors z-10"
             title="Links e Vídeos"
           >
-            <LinkIcon className="w-5 h-5" />
+            <LinkIcon className="w-5 h-5 cursor-pointer" />
           </button>
         )}
       </div>
