@@ -1,0 +1,1 @@
+Added keyboard accessibility to ModuleCard.tsx via role='button', tabIndex={0}, and onKeyDown handlers. Ensured nested buttons stop event propagation on Enter/Space to avoid triggering parent card's onKeyDown. Used focus-visible utility classes for better visual indication without affecting mouse users.

@@ -21,12 +21,20 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, onClick, index, onOpenL
 
   return (
     <motion.div
+      role="button"
+      tabIndex={0}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       whileHover={{ y: -4, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-      className="bg-white rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-6 cursor-pointer flex flex-col h-full relative overflow-hidden group"
+      className="bg-white rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-6 cursor-pointer flex flex-col h-full relative overflow-hidden group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
       onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      }}
     >
       {/* Decoration Circle */}
       <div className={`absolute -right-4 -top-4 w-24 h-24 rounded-full opacity-5 ${module.color.replace('text-', 'bg-')}`} />
@@ -56,8 +64,15 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, onClick, index, onOpenL
         {hasResources && (
           <button
             onClick={handleLinksClick}
-            className="flex items-center justify-center p-2 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors z-10 cursor-pointer"
+            onKeyDown={(e) => {
+              // Prevent triggering the card's onKeyDown when pressing Enter/Space on the button
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.stopPropagation();
+              }
+            }}
+            className="flex items-center justify-center p-2 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             title="Links e Vídeos"
+            aria-label={`Links e Vídeos para ${module.title}`}
           >
             <LinkIcon className="w-5 h-5 cursor-pointer" />
           </button>
