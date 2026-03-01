@@ -99,7 +99,7 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 min-h-[calc(100vh-64px)] flex flex-col">
+    <div className="max-w-6xl mx-auto px-4 py-8 min-h-[calc(100vh-64px)] flex flex-col">
       {/* Progress Bar */}
       <div className="mb-8">
         <div className="flex justify-between text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
@@ -133,7 +133,7 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
         </button>
 
         {/* Card Container */}
-        <div className="w-full max-w-2xl mx-1 sm:mx-4 md:mx-8">
+        <div className="w-full max-w-4xl mx-1 sm:mx-4 md:mx-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStepIndex}
@@ -152,7 +152,7 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
                 </h2>
               </div>
 
-              <div className="space-y-4 max-w-xl mx-auto">
+              <div className="space-y-4 max-w-3xl mx-auto">
                 {currentStep.content.map((paragraph, idx) => (
                   <motion.div
                     key={idx}
@@ -174,7 +174,7 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="mt-8 bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-lg max-w-xl mx-auto"
+                  className="mt-8 bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-lg max-w-3xl mx-auto"
                 >
                   <div className="flex items-start">
                     <AlertTriangle className="w-5 h-5 text-orange-600 mr-2 flex-shrink-0 mt-0.5" />
