@@ -123,17 +123,17 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
         <button
           onClick={handlePrev}
           disabled={currentStepIndex === 0}
-          className={`p-2 transition-all transform hover:scale-110 hover:-translate-x-1 flex-shrink-0 ${currentStepIndex === 0
+          className={`p-1 sm:p-2 transition-all transform hover:scale-110 hover:-translate-x-1 flex-shrink-0 ${currentStepIndex === 0
             ? 'opacity-0 cursor-not-allowed pointer-events-none'
             : 'text-slate-400 hover:text-blue-600 cursor-pointer'
             }`}
           aria-label="Passo anterior"
         >
-          <ChevronLeft className="w-10 h-10 md:w-16 md:h-16" strokeWidth={1} />
+          <ChevronLeft className="w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16" strokeWidth={1} />
         </button>
 
         {/* Card Container */}
-        <div className="w-full max-w-2xl mx-4 md:mx-8">
+        <div className="w-full max-w-2xl mx-1 sm:mx-4 md:mx-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStepIndex}
@@ -141,7 +141,7 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
-              className="bg-white w-full rounded-2xl shadow-lg border border-slate-100 p-8 md:p-12 relative"
+              className="bg-white w-full min-h-[500px] md:min-h-[450px] flex flex-col justify-center rounded-2xl shadow-lg border border-slate-100 px-4 py-8 sm:p-8 md:p-12 relative"
             >
               <div className="flex flex-col items-center text-center mb-8">
                 <div className="bg-blue-50 p-4 rounded-full mb-4">
@@ -191,13 +191,13 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
         {/* Right Navigation Arrow */}
         <button
           onClick={handleNext}
-          className="p-2 transition-all transform hover:scale-110 hover:translate-x-1 flex-shrink-0 text-slate-400 hover:text-blue-600 cursor-pointer"
+          className="p-1 sm:p-2 transition-all transform hover:scale-110 hover:translate-x-1 flex-shrink-0 text-slate-400 hover:text-blue-600 cursor-pointer"
           aria-label={isLastStep ? 'Concluir tutorial' : 'Próximo passo'}
         >
           {isLastStep ? (
-            <CheckCircle2 className="w-10 h-10 md:w-16 md:h-16 text-blue-600" strokeWidth={1} />
+            <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 text-blue-600" strokeWidth={1} />
           ) : (
-            <ChevronRight className="w-10 h-10 md:w-16 md:h-16" strokeWidth={1} />
+            <ChevronRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16" strokeWidth={1} />
           )}
         </button>
       </div>

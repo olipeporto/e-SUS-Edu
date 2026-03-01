@@ -25,7 +25,7 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, onClick, index, onOpenL
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       whileHover={{ y: -4, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-      className="bg-white rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-6 cursor-pointer flex flex-col h-full relative overflow-hidden group"
+      className="w-full bg-white rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-6 cursor-pointer flex flex-col h-full relative overflow-hidden group"
       onClick={onClick}
     >
       {/* Decoration Circle */}
