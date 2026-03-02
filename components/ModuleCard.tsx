@@ -19,14 +19,27 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, onClick, index, onOpenL
     onOpenLinks(module.id);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Only trigger if the event originated on the card itself, not a child
+    if (e.target !== e.currentTarget) return;
+
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       whileHover={{ y: -4, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-      className="w-full bg-white rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-6 cursor-pointer flex flex-col h-full relative overflow-hidden group"
+      className="w-full bg-white rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-6 cursor-pointer flex flex-col h-full relative overflow-hidden group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
       onClick={onClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
     >
       {/* Decoration Circle */}
       <div className={`absolute -right-4 -top-4 w-24 h-24 rounded-full opacity-5 ${module.color.replace('text-', 'bg-')}`} />
@@ -56,8 +69,9 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, onClick, index, onOpenL
         {hasResources && (
           <button
             onClick={handleLinksClick}
-            className="flex items-center justify-center p-2 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors z-10 cursor-pointer"
+            className="flex items-center justify-center p-2 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors z-10 cursor-pointer"
             title="Links e Vídeos"
+            aria-label={`Links e Vídeos para ${module.title}`}
           >
             <LinkIcon className="w-5 h-5 cursor-pointer" />
           </button>
