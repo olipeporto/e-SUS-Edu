@@ -58,7 +58,10 @@ export const TUTORIAL_MODULES: TutorialModule[] = [
           'Classificação de Risco: Define a prioridade (Vermelho, Amarelo, Verde, Azul).',
           'Desfecho: Liberar cidadão (resolvido na escuta), Agendar consulta futura ou Adicionar à lista para atendimento no dia.'
         ],
-        icon: 'stethoscope'
+        icon: 'stethoscope',
+        images: [
+          'https://sisaps.saude.gov.br/sistemas/esusaps/assets/images/pec_image333-a5230c08db1c461d28df000beb552ece.png'
+        ]
       },
       {
         title: 'Vacinação',
@@ -68,7 +71,10 @@ export const TUTORIAL_MODULES: TutorialModule[] = [
           'Alerta: O sistema avisa automaticamente sobre vacinas em atraso.',
           'Acesso: Pode ser iniciado via "Realizar Vacinação" na lista ou dentro de um atendimento.'
         ],
-        icon: 'syringe'
+        icon: 'syringe',
+        images: [
+          'https://sisaps.saude.gov.br/sistemas/esusaps/assets/images/pec_image343-033797c130c8ec9c46e25d15668bead8.png'
+        ]
       },
       {
         title: 'Folha de Rosto',
@@ -77,7 +83,10 @@ export const TUTORIAL_MODULES: TutorialModule[] = [
           'Exibe: Medições recentes (Sinais Vitais), Alergias, Problemas/Condições (Ativos/Latentes) e Medicamentos em uso.',
           'Objetivo: Fornecer uma visão rápida do histórico do paciente para apoiar a decisão clínica.'
         ],
-        icon: 'file-text'
+        icon: 'file-text',
+        images: [
+          'https://sisaps.saude.gov.br/sistemas/esusaps/assets/images/pec_image893-42cf113cc25b6b8fef92b8238c545d74.png'
+        ]
       },
       {
         title: 'Método SOAP',
@@ -98,7 +107,10 @@ export const TUTORIAL_MODULES: TutorialModule[] = [
           'Desfecho: Liberar cidadão, Manter na lista (para passar por outro profissional) ou Agendar retorno.',
           'Racionalidade em Saúde: Campo para informar práticas integrativas/complementares.'
         ],
-        icon: 'check-square'
+        icon: 'check-square',
+        images: [
+          'https://sisaps.saude.gov.br/sistemas/esusaps/assets/images/pec_image1092-2ed7ea878ff8b1ad140272340218a9ab.png'
+        ]
       }
     ]
   },
