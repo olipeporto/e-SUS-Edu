@@ -1,8 +1,8 @@
-import { 
-  Users, 
-  Calendar, 
-  Home, 
-  Activity, 
+import {
+  Users,
+  Calendar,
+  Home,
+  Activity,
   ClipboardList
 } from 'lucide-react';
 import { TutorialModule } from './types';
@@ -19,8 +19,8 @@ export const TUTORIAL_MODULES: TutorialModule[] = [
     ],
     videos: [
       {
-      title: 'Registrar a escuta inicial',
-      url: 'https://www.youtube.com/watch?v=UihP7WCF2nw&list=PLlteHuqLkt1Bztf0AptHNOjspVqoNeWhX&index=6'
+        title: 'Registrar a escuta inicial',
+        url: 'https://www.youtube.com/watch?v=UihP7WCF2nw&list=PLlteHuqLkt1Bztf0AptHNOjspVqoNeWhX&index=6'
       },
       {
         title: 'Preencher o SOAP',
@@ -44,7 +44,11 @@ export const TUTORIAL_MODULES: TutorialModule[] = [
           'Status: Barra colorida indica a situação atual (Aguardando, Em atendimento, Finalizado).',
           'Ações: Iniciar Escuta Inicial, Vacinação ou Atendimento (SOAP).'
         ],
-        icon: 'list'
+        icon: 'list',
+        images: [
+          'https://sisaps.saude.gov.br/sistemas/esusaps/assets/images/pec_image306-4a613b7fd7afd250509940aa6f4d926e.png',
+          'https://sisaps.saude.gov.br/sistemas/esusaps/assets/images/pec_image310-ab8bbdd87ba70499509006306049b24b.png'
+        ]
       },
       {
         title: 'Escuta Inicial',
@@ -109,8 +113,8 @@ export const TUTORIAL_MODULES: TutorialModule[] = [
     ],
     videos: [
       {
-      title: 'Atualizar um cadastro existente',
-      url: 'https://www.youtube.com/watch?v=aXBXBJkdVIU&list=PLlteHuqLkt1Bztf0AptHNOjspVqoNeWhX&index=5'
+        title: 'Atualizar um cadastro existente',
+        url: 'https://www.youtube.com/watch?v=aXBXBJkdVIU&list=PLlteHuqLkt1Bztf0AptHNOjspVqoNeWhX&index=5'
       }
     ],
     steps: [
@@ -174,8 +178,8 @@ export const TUTORIAL_MODULES: TutorialModule[] = [
     ],
     videos: [
       {
-      title: 'Agendar uma consulta',
-      url: 'https://www.youtube.com/watch?v=h-zavM_HYjA&list=PLlteHuqLkt1Bztf0AptHNOjspVqoNeWhX&index=3'
+        title: 'Agendar uma consulta',
+        url: 'https://www.youtube.com/watch?v=h-zavM_HYjA&list=PLlteHuqLkt1Bztf0AptHNOjspVqoNeWhX&index=3'
       }
     ],
     steps: [
@@ -230,21 +234,21 @@ export const TUTORIAL_MODULES: TutorialModule[] = [
       { title: 'Cadastro de APS: e-SUS APS', url: `https://sisaps.saude.gov.br/sistemas/esusaps/docs/manual/TERRITORIO/territorio_03` }
     ],
     videos: [
-      { 
-        title: 'Atualizar cadastro das famílias e cidadãos no app e-SUS Território', 
-        url: 'https://www.youtube.com/watch?v=Wh9GKY-w9DI&list=PLlteHuqLkt1DngvAKq8gbSCeenyto8PoK&index=20' 
+      {
+        title: 'Atualizar cadastro das famílias e cidadãos no app e-SUS Território',
+        url: 'https://www.youtube.com/watch?v=Wh9GKY-w9DI&list=PLlteHuqLkt1DngvAKq8gbSCeenyto8PoK&index=20'
       },
-      { 
+      {
         title: 'Cadastrar família e cidadãos no app e-SUS Território',
-        url: 'https://www.youtube.com/watch?v=FqVWosfRbfE&list=PLlteHuqLkt1DngvAKq8gbSCeenyto8PoK&index=35' 
+        url: 'https://www.youtube.com/watch?v=FqVWosfRbfE&list=PLlteHuqLkt1DngvAKq8gbSCeenyto8PoK&index=35'
       },
-      { 
+      {
         title: 'Cadastrar imóvel no app e-SUS Território',
-        url: 'https://www.youtube.com/watch?v=jm-XXzWnJEs&list=PLlteHuqLkt1DngvAKq8gbSCeenyto8PoK&index=26' 
+        url: 'https://www.youtube.com/watch?v=jm-XXzWnJEs&list=PLlteHuqLkt1DngvAKq8gbSCeenyto8PoK&index=26'
       },
-      { 
+      {
         title: 'Editar e unificar logradouro no app e-SUS Território',
-        url: 'https://www.youtube.com/watch?v=VbSiWcDpv48&list=PLlteHuqLkt1DngvAKq8gbSCeenyto8PoK&index=23' 
+        url: 'https://www.youtube.com/watch?v=VbSiWcDpv48&list=PLlteHuqLkt1DngvAKq8gbSCeenyto8PoK&index=23'
       },
       {
         title: 'Registrar visita domiciliar à família no app e-SUS Território',

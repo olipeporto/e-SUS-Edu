@@ -4,6 +4,7 @@ import { TutorialModule } from '../types';
 import {
   ChevronRight,
   ChevronLeft,
+  ChevronDown,
   CheckCircle2,
   AlertTriangle,
   Info,
@@ -117,13 +118,13 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
       </div>
 
       {/* Content Area with Side Arrows */}
-      <div className="flex-grow flex items-center justify-between w-full mt-4">
+      <div className="flex-grow flex items-start justify-between w-full mt-4">
 
         {/* Left Navigation Arrow */}
         <button
           onClick={handlePrev}
           disabled={currentStepIndex === 0}
-          className={`p-1 sm:p-2 transition-all transform hover:scale-110 hover:-translate-x-1 flex-shrink-0 ${currentStepIndex === 0
+          className={`mt-48 sm:mt-56 p-1 sm:p-2 transition-all transform hover:scale-110 hover:-translate-x-1 flex-shrink-0 ${currentStepIndex === 0
             ? 'opacity-0 cursor-not-allowed pointer-events-none'
             : 'text-slate-400 hover:text-blue-600 cursor-pointer'
             }`}
@@ -169,6 +170,29 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
                 ))}
               </div>
 
+              {currentStep.images && currentStep.images.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-8 flex flex-col gap-6 w-full max-w-3xl mx-auto items-center"
+                >
+                  <div className="flex items-center justify-center gap-2 text-slate-500 font-medium w-full border-b border-slate-100 pb-2 mb-2">
+                    <ChevronDown className="w-5 h-5" />
+                    <span>Imagens</span>
+                    <ChevronDown className="w-5 h-5" />
+                  </div>
+                  {currentStep.images.map((url, idx) => (
+                    <img
+                      key={idx}
+                      src={url}
+                      alt={`Imagem ilustrativa ${idx + 1}`}
+                      className="rounded-lg border border-slate-200 shadow-sm max-w-full"
+                    />
+                  ))}
+                </motion.div>
+              )}
+
               {currentStep.note && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -191,7 +215,7 @@ const TutorialViewer: React.FC<TutorialViewerProps> = ({ module, onComplete }) =
         {/* Right Navigation Arrow */}
         <button
           onClick={handleNext}
-          className="p-1 sm:p-2 transition-all transform hover:scale-110 hover:translate-x-1 flex-shrink-0 text-slate-400 hover:text-blue-600 cursor-pointer"
+          className="mt-48 sm:mt-56 p-1 sm:p-2 transition-all transform hover:scale-110 hover:translate-x-1 flex-shrink-0 text-slate-400 hover:text-blue-600 cursor-pointer"
           aria-label={isLastStep ? 'Concluir tutorial' : 'Próximo passo'}
         >
           {isLastStep ? (

@@ -10,6 +10,7 @@ export interface TutorialStep {
   content: string[];
   note?: string; // Optional warning or tip
   icon?: string; // String identifier for the icon to be rendered
+  images?: string[]; // Optional array of image URLs
 }
 
 export interface TutorialModule {
