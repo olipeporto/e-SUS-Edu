@@ -49,7 +49,8 @@ const LinksModal: React.FC<LinksModalProps> = ({ isOpen, onClose, title, links, 
               </div>
               <button
                 onClick={onClose}
-                className="p-1 rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
+                className="p-1 rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                aria-label="Fechar"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -74,7 +75,7 @@ const LinksModal: React.FC<LinksModalProps> = ({ isOpen, onClose, title, links, 
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center p-3 rounded-lg border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all group"
+                        className="flex items-center p-3 rounded-lg border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                       >
                         <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-blue-500 mr-3 flex-shrink-0" />
                         <span className="text-sm font-medium text-slate-700 group-hover:text-blue-700">
@@ -99,7 +100,7 @@ const LinksModal: React.FC<LinksModalProps> = ({ isOpen, onClose, title, links, 
                         href={video.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center p-3 rounded-lg border border-slate-100 hover:border-red-200 hover:bg-red-50 transition-all group"
+                        className="flex items-center p-3 rounded-lg border border-slate-100 hover:border-red-200 hover:bg-red-50 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
                       >
                         <SquarePlay className="w-4 h-4 text-slate-400 group-hover:text-red-500 mr-3 flex-shrink-0" />
                         <span className="text-sm font-medium text-slate-700 group-hover:text-red-700">
@@ -115,7 +116,7 @@ const LinksModal: React.FC<LinksModalProps> = ({ isOpen, onClose, title, links, 
             <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end flex-shrink-0">
               <button
                 onClick={onClose}
-                className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 Fechar
               </button>
