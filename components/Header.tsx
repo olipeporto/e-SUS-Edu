@@ -11,9 +11,10 @@ const Header: React.FC<HeaderProps> = ({ onGoHome, isHome }) => {
     <header className="bg-white sticky top-0 z-50 shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div
-            className="flex items-center cursor-pointer group"
+          <button
+            className="flex items-center cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg pr-2"
             onClick={onGoHome}
+            aria-label="Ir para a página inicial"
           >
             <div className="bg-blue-600 p-2 rounded-lg group-hover:bg-blue-700 transition-colors">
               <BookOpen className="h-6 w-6 text-white" />
@@ -21,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ onGoHome, isHome }) => {
             <span className="ml-3 text-xl font-bold text-slate-800 tracking-tight">
               e-SUS <span className="text-blue-600">Edu</span>
             </span>
-          </div>
+          </button>
 
           {!isHome && (
             <button
