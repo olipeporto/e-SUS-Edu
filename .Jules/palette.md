@@ -1,0 +1,3 @@
+## 2024-05-24 - Semantic Button Refactor on Header
+**Learning:** In the e-SUS Edu app's Header, the interactive logo was originally a clickable `div` instead of a semantic `<button>`, making it harder for screen readers and keyboard users to navigate and understand its interactive nature. Also, focus states were completely missing from interactive elements in the header.
+**Action:** When implementing clickable items that trigger application state changes (like returning home), always use a semantic `<button>` instead of a `<div>`. Additionally, always use Tailwind's `focus-visible:` utilities (`focus-visible:outline-none focus-visible:ring-2`) to ensure that keyboard users receive clear visual feedback when interacting with elements.
