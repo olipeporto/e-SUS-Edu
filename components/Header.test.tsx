@@ -21,13 +21,10 @@ describe('Header component', () => {
 
   it('calls onGoHome when the logo is clicked', () => {
     const onGoHomeMock = vi.fn();
-    const { container } = render(<Header onGoHome={onGoHomeMock} isHome={true} />);
+    render(<Header onGoHome={onGoHomeMock} isHome={true} />);
 
-    // The logo container has the onClick handler
-    const logoContainer = container.querySelector('.cursor-pointer.group');
-    if (logoContainer) {
-      fireEvent.click(logoContainer);
-    }
+    const logoButton = screen.getByRole('button', { name: /Ir para a página inicial/i });
+    fireEvent.click(logoButton);
 
     expect(onGoHomeMock).toHaveBeenCalledTimes(1);
   });
